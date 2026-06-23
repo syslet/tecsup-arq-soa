@@ -1,0 +1,118 @@
+{
+  "info": {
+    "_postman_id": "5bab8132-3463-4b91-aac2-ccdc50ffbf4a",
+    "name": "Arq-SOA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "10961975"
+  },
+  "item": [
+    {
+      "name": "SOA - Consulta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <hea:consulta_cita>\r\n         <dni_paciente>10602835</dni_paciente>\r\n      </hea:consulta_cita>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5002/?wsdl",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5002",
+          "path": [
+            ""
+          ],
+          "query": [
+            {
+              "key": "wsdl",
+              "value": null
+            }
+          ]
+        },
+        "description": "Generated from cURL: curl --location '[http://localhost:5002/'](http://localhost:5002/')  \n\\--header 'Content-Type: text/xml;charset=UTF-8'  \n\\--data-raw '  \nhttp://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">  \n[soapenv:Header/](https://null)  \n[soapenv:Body](https://null)  \n[hea:consulta_cita](https://null)  \nJuan  \n  \n  \n'"
+      },
+      "response": []
+    },
+    {
+      "name": "SOA - Registro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <hea:registrar_cita>\r\n         <fecha_hora>2026-06-23T10:00:00</fecha_hora>\r\n         <especialidad>Dental</especialidad>\r\n         <medico>Dra. Piono</medico>\r\n         <dni_paciente>10602835</dni_paciente>\r\n         <paciente>Rene</paciente>\r\n         <centro_salud>Hospital Vitarte</centro_salud>\r\n         <consultorio>102</consultorio>\r\n         <estado>Registrado</estado>\r\n      </hea:registrar_cita>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:5001/' \\\r\n--header 'Content-Type: text/xml;charset=UTF-8' \\\r\n--data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <hea:registrar_cita>\r\n         <fecha_hora>2026-06-21T10:00:00</fecha_hora>\r\n         <especialidad>Cardiología</especialidad>\r\n         <medico>Dr. Pérez</medico>\r\n         <paciente>Juan</paciente>\r\n         <centro_salud>Hospital Central</centro_salud>\r\n         <consultorio>101</consultorio>\r\n      </hea:registrar_cita>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>'\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "SOA - Actualización",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <hea:actualizar_cita>\r\n         <id>1</id>\r\n         <nueva_fecha_hora>2026-06-23T11:00:00</nueva_fecha_hora>\r\n         <nuevo_estado>Reprogramado</nuevo_estado>\r\n      </hea:actualizar_cita>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5003/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5003",
+          "path": [
+            ""
+          ]
+        },
+        "description": "Generated from cURL: curl --location 'http://localhost:5003/' \\\r\n--header 'Content-Type: text/xml;charset=UTF-8' \\\r\n--data-raw '<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:hea=\"health.citas\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <hea:actualizar_cita>\r\n         <paciente>Juan</paciente>\r\n         <nueva_fecha_hora>2026-06-22T11:00:00</nueva_fecha_hora>\r\n      </hea:actualizar_cita>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>'\r\n"
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  mysql-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    command: --bind-address=0.0.0.0
+
+  registro-service:
+    build: ./registro
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mysql-db
+
+  consulta-service:
+    build: ./consulta
+    ports:
+      - "5002:5000"
+    depends_on:
+      - mysql-db
+
+  actualizacion-service:
+    build: ./actualizacion
+    ports:
+      - "5003:5000"
+    depends_on:
+      - mysql-db
+
+  service-bus:
+    image: wso2/wso2mi:latest
+    ports:
+      - "8280:8280"
+      - "9443:9443"

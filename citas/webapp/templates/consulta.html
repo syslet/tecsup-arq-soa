@@ -1,0 +1,29 @@
+<h2>Consulta de Citas</h2>
+
+{% if citas %}
+<table border="1">
+  <tr>
+    <th>ID</th><th>Fecha/Hora</th><th>Especialidad</th><th>Médico</th>
+    <th>DNI</th><th>Paciente</th><th>Centro Salud</th><th>Consultorio</th><th>Estado</th>
+  </tr>
+  {% for cita in citas %}
+  <tr>
+    <td><a href="{{ url_for('actualizacion', id=cita.id) }}">{{ cita.id }}</a></td>
+    <td>{{ cita.fecha_hora }}</td>
+    <td>{{ cita.especialidad }}</td>
+    <td>{{ cita.medico }}</td>
+    <td>{{ cita.dni_paciente }}</td>
+    <td>{{ cita.paciente }}</td>
+    <td>{{ cita.centro_salud }}</td>
+    <td>{{ cita.consultorio }}</td>
+    <td>{{ cita.estado }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No se encontraron citas registradas.</p>
+{% endif %}
+
+<hr/>
+<a href="http://127.0.0.1:8888/">volver</a>
+

@@ -4,6 +4,8 @@ Implementación de Ecosistema con Python, Flask y Docker Compose
 
 Infraestructura de Microservicios SOAP & ESB
 
+### Integrante: Rene Plaz 
+
 
 ## ECOSISTEMA TECNOLÓGICO
 
@@ -80,7 +82,60 @@ Inserción de nuevas citas validando integridad de datos.
 http://localhost:5001/?wsdl
 
 ```xml
-
+<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="health.citas" targetNamespace="health.citas" name="Application">
+<wsdl:types>
+<xs:schema targetNamespace="health.citas" elementFormDefault="qualified">
+<xs:complexType name="registrar_cita">
+<xs:sequence>
+<xs:element name="fecha_hora" type="xs:dateTime" minOccurs="0" nillable="true"/>
+<xs:element name="especialidad" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="medico" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="dni_paciente" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="paciente" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="centro_salud" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="consultorio" type="xs:string" minOccurs="0" nillable="true"/>
+<xs:element name="estado" type="xs:string" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="registrar_citaResponse">
+<xs:sequence>
+<xs:element name="registrar_citaResult" type="xs:string" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="registrar_cita" type="tns:registrar_cita"/>
+<xs:element name="registrar_citaResponse" type="tns:registrar_citaResponse"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="registrar_cita">
+<wsdl:part name="registrar_cita" element="tns:registrar_cita"/>
+</wsdl:message>
+<wsdl:message name="registrar_citaResponse">
+<wsdl:part name="registrar_citaResponse" element="tns:registrar_citaResponse"/>
+</wsdl:message>
+<wsdl:service name="RegistroService">
+<wsdl:port name="Application" binding="tns:Application">
+<wsdlsoap11:address location="http://localhost:5001/"/>
+</wsdl:port>
+</wsdl:service>
+<wsdl:portType name="Application">
+<wsdl:operation name="registrar_cita" parameterOrder="registrar_cita">
+<wsdl:input name="registrar_cita" message="tns:registrar_cita"/>
+<wsdl:output name="registrar_citaResponse" message="tns:registrar_citaResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="Application" type="tns:Application">
+<wsdlsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="registrar_cita">
+<wsdlsoap11:operation soapAction="registrar_cita" style="document"/>
+<wsdl:input name="registrar_cita">
+<wsdlsoap11:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="registrar_citaResponse">
+<wsdlsoap11:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+</wsdl:definitions>
 ```
 
 ### Consulta
